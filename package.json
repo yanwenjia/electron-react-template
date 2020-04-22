@@ -1,34 +1,101 @@
 {
-  "name": "electron-react-template",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "react-electron",
+	"version": "0.1.0",
+	"author": "yanwenjia",
+	"private": true,
+	"main": "main.js",
+	"homepage": ".",
+	"dependencies": {
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-router-dom": "^5.1.2"
+	},
+	"scripts": {
+		"client": "set BROWSER=none&&react-scripts start",
+		"electron": "cross-env NODE_ENV=development electron . ",
+		"build:client": "react-scripts build",
+		"start": "concurrently \"npm run client\"  \"npm run electron\"",
+		"build": "npm run build:client && electron-builder"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"concurrently": "^5.1.0",
+		"cross-env": "^7.0.2",
+		"electron": "^8.2.0",
+		"electron-builder": "^22.4.1",
+		"react-scripts": "3.4.1"
+	},
+	"build": {
+		"extends": null,
+		"productName": "Test",
+		"appId": "com.jiayanwen.test",
+		"directories": {
+			"output": "pack"
+		},
+		"files": [
+			"build/**/*",
+			"./main.js"
+		],
+		"publish": [
+			{
+				"provider": "generic",
+				"url": ""
+			}
+		],
+		"dmg": {
+			"contents": [
+				{
+					"x": 410,
+					"y": 150,
+					"type": "link",
+					"path": "/Applications"
+				},
+				{
+					"x": 130,
+					"y": 150,
+					"type": "file"
+				}
+			]
+		},
+		"mac": {
+			"icon": "pack/icons/icon.icns"
+		},
+		"nsis": {
+			"oneClick": false,
+			"allowToChangeInstallationDirectory": true,
+			"createDesktopShortcut": true,
+			"createStartMenuShortcut": true,
+			"installerIcon": "./pack/icons/icon.ico",
+			"uninstallerIcon": "./pack/icons/icon.ico",
+			"installerHeaderIcon": "./pack/icons/icon.ico",
+			"runAfterFinish": true,
+			"shortcutName": "TEST"
+		},
+		"win": {
+			"icon": "pack/icons/icon.ico",
+			"artifactName": "${productName}_setup_${version}.${ext}",
+			"target": [
+				{
+					"target": "nsis"
+				}
+			]
+		},
+		"linux": {
+			"icon": "pack/icons"
+		}
+	}
 }

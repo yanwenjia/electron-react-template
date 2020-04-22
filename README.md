@@ -1,3 +1,17 @@
+此项目通过create-react-app创建，通过electron打包成为桌面应用
+
+#### 路由采用哈希路由（其他模式未尝试）
+`<a href="#/test">测试</a>` （注意#前面没有/）
+#### package.json文件要增加homepage
+`"homepage": "."`
+#### package.json文件要增加build配置
+- 其中要注意添加`"extends": null`,此配置也能减小打包完体积，原因未知
+[详细配置](https://blog.csdn.net/qq_38830593/article/details/89843722)
+#### main文件中要注意加载路径
+`file://${__dirname}/build/index.html` （注意其中的build为react打包完之后的文件夹）
+### png转ico格式的图标
+[网址](https://www.aconvert.com/cn/icon/png-to-ico/#)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
