@@ -11,6 +11,20 @@
 `file://${__dirname}/build/index.html` （注意其中的build为react打包完之后的文件夹）
 ### png转ico格式的图标
 [网址](https://www.aconvert.com/cn/icon/png-to-ico/#)
+### dev-app-update.yml文件不存在
+将\pack\win-unpacked\resources\app-update.yml复制到项目根目录并改名为dev-app-update.yml       
+[详细链接](https://www.jianshu.com/p/15bde714e198)
+### fs.existsSync is not a function
+- 在渲染进程中调用require需要使用window.require
+- ```
+  new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true // 是否集成 Nodejs
+    }
+  })
+  ```
+### 自动更新渲染进程页面UI为写
+- 可根据自身选用UI框架做合适的更新界面
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
