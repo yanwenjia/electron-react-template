@@ -21,8 +21,7 @@ function Routers(props) {
                     {/* <Basic /> */}
                     {/* <Route component={NotFound} /> */}
                 </Switch>
-                <a href="#/test">路由里面</a>
-                <Link to="/">首页</Link>
+                <Link to="/" style={{marginRight:'20px'}}>首页</Link>
                 <Link to="/test">测试</Link>
             </HashRouter>
         </div>

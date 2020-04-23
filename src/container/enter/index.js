@@ -34,8 +34,7 @@ export default class Enter extends Component{
     render(){
         return (
             <div>
-                <a href="#/test">路由外面</a>
-                Enter(这是旧包)
+                首页
             </div>
         )
     }

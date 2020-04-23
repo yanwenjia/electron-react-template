@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const {autoUpdater} = require('electron-updater')
 
 const winURL = process.env.NODE_ENV === 'development' ? `http://localhost:3000` : `file://${__dirname}/build/index.html`
@@ -41,6 +41,12 @@ app.on('activate', function () {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) createWindow()
+})
+
+ipcMain.on('app-exit', () => {
+  console.log('..........................................')
+  // 所有窗口都将立即被关闭，而不询问用户，而且 before-quit 和 will-quit 事件也不会被触发。
+  app.exit()
 })
 
 // In this file you can include the rest of your app's specific main process
